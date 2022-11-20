@@ -1,0 +1,30 @@
+.type-wrapper {
+  height: 438px;
+  padding-top: 34px;
+  padding-bottom: 39.67px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.type-title {
+  font-family: 'Prata';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 43px;
+  color: #212121;
+}
+
+.title-line {
+  width: 32px;
+  border: 2px solid;
+  margin-top: 9.94px;
+}
+
+.pokemon-list {
+  margin-top: 38.06px;
+  display: flex;
+  gap: 24px;
+}

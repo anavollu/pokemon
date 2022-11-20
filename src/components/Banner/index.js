@@ -1,5 +1,6 @@
 import { React } from "react";
-import "./index.css";
+import "./styles.css";
+
 function Banner() {
   return (
     <header className="banner">
