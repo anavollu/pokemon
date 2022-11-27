@@ -5,16 +5,20 @@ import "./styles.css";
 const Pokedex = require("pokeapi-js-wrapper");
 
 function Type(props) {
-  const [pokemonNames, setPokemonNames] = useState([]);
+  const [pokemonNamesAndNumbers, setPokemonNamesAndNumbers] = useState([]);
 
-  async function getPokemonNames(type) {
-    const icePokemons = await new Pokedex.Pokedex().getTypeByName(type);
-    const icePokemonsNames = icePokemons.pokemon.map((el) => el.pokemon.name);
-    return icePokemonsNames;
+  async function getPokemonNamesAndNumbers(type) {
+    const typePokemons = await new Pokedex.Pokedex().getTypeByName(type);
+    const typePokemonsNamesAndNumbers = typePokemons.pokemon.map((el) => {
+      const url = el.pokemon.url.split("https://pokeapi.co/api/v2/pokemon/");
+      const number = url[1].slice(0, -1);
+      return [el.pokemon.name, number];
+    });
+    return typePokemonsNamesAndNumbers;
   }
 
   useEffect(() => {
-    getPokemonNames(props.type).then(setPokemonNames);
+    getPokemonNamesAndNumbers(props.type).then(setPokemonNamesAndNumbers);
   }, [props.type]);
 
   return (
@@ -30,15 +34,26 @@ function Type(props) {
         }}
       ></div>
       <div className="pokemon-list">
-        {pokemonNames.slice(0, 6).map((pokemonName, i) => (
-          <TypeItem
-            key={pokemonName + i}
-            primaryColor={props.primaryColor}
-            name={pokemonName}
-          />
-        ))}
+        {pokemonNamesAndNumbers.slice(0, 4).map((el, i) => {
+          const pokemonName = el[0];
+          const pokemonNumber = el[1];
+          return (
+            <TypeItem
+              key={pokemonName + i}
+              primaryColor={props.primaryColor}
+              name={pokemonName}
+              number={pokemonNumber}
+            />
+          );
+        })}
+        {pokemonNamesAndNumbers.length > 4 ? (
+          <button className="button" onClick={console.log("Click!")}>
+            +
+          </button>
+        ) : (
+          ""
+        )}
       </div>
-      {pokemonNames.length > 5 ? "click here to see more" : ""}
     </div>
   );
 }

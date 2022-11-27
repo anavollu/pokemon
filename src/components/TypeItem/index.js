@@ -16,7 +16,7 @@ function TypeItem(props) {
           alt="Foto do Pokémon"
         />
         <p className="pokemon-name">{capitalizeFirstLetter(props.name)}</p>
-        <p className="pokemon-number">{props.number}</p>
+        <p className="pokemon-number">{"#" + props.number}</p>
       </div>
     </div>
   );
