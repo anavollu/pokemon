@@ -15,8 +15,8 @@ function TypeItem(props) {
           src="/assets/1bulbasaur1600x1200.jpg"
           alt="Foto do Pokémon"
         />
-        <p className="pokemon-name">{capitalizeFirstLetter("bulbassaur")}</p>
-        <p className="pokemon-number">#001</p>
+        <p className="pokemon-name">{capitalizeFirstLetter(props.name)}</p>
+        <p className="pokemon-number">{props.number}</p>
       </div>
     </div>
   );
